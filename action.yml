@@ -1,0 +1,42 @@
+name: 'Class1 Cost-Risk Guard'
+description: 'Estimate PR monthly LLM cost delta with Monte Carlo simulations and budget policy gates.'
+author: 'class1-dev'
+branding:
+  icon: 'shield'
+  color: 'blue'
+
+inputs:
+  license_key:
+    description: 'Class1.dev license key (required for budget gates and persistence)'
+    required: false
+  config:
+    description: 'Path to config JSON file overriding priors (optional)'
+    required: false
+  base:
+    description: 'Git base ref (defaults to PR target branch, e.g. origin/main)'
+    required: false
+  head:
+    description: 'Git head ref (defaults to GITHUB_SHA or HEAD)'
+    required: false
+  output:
+    description: 'File path to write the markdown comment report'
+    required: false
+    default: 'comment.md'
+  json:
+    description: 'File path to write the machine-readable gate JSON summary'
+    required: false
+  persist:
+    description: 'Workflow name to persist estimate metrics (for calibration)'
+    required: false
+  n:
+    description: 'Number of Monte Carlo samples'
+    required: false
+    default: '120000'
+  github_token:
+    description: 'GitHub token to automatically post or update the PR comment'
+    required: false
+    default: '${{ github.token }}'
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/1snob/class1-action:latest'
