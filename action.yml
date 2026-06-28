@@ -39,4 +39,4 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/1snob/abc7d:latest'
+  image: 'docker://ghcr.io/1snob/class1-action:latest'
